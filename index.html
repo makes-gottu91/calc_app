@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='UTF-8'>
+	<title>時間計算 App</title>
+</head>
+
+<body>
+	<main class="top_main">
+		<h1>時間計算 App</h1>
+		<div class="calc_cont">
+			持ち時間 <input type="text" id="amount">h<br>
+			イベント事 <input type="text" id="event">h<br>
+			パーセンテージ <input type="text" id="percent"> (0~1の値を入力してください)<br>
+			担当新規 <input type="text" id="new_cont">h<br>
+			<button id="calc_btn">計算</button>
+			<p class="result_text">余剰時間 <span id="result"></span>h</p>
+		</div>
+	</main>
+
+	<script>
+		let amount = document.getElementById('amount');
+		let event = document.getElementById('event');
+		let percent= document.getElementById('percent');
+		let new_cont = document.getElementById('new_cont');
+		let calcBtn = document.getElementById('calc_btn');
+		let result = document.getElementById('result');
+		
+		const calc = () => {
+			amount = parseInt(amount.value,10);
+			event = parseInt(event.value,10);
+			percent = parseFloat(percent.value);
+			new_cont = parseInt(new_cont.value,10);
+			const resultTime = (amount - event) * percent - new_cont;
+			result.innerText = resultTime;
+		};
+
+		calcBtn.addEventListener('click',() => {
+			calc();
+		});
+	</script>
+</body>
+</html>
