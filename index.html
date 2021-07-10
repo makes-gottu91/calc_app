@@ -6,34 +6,107 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>時間計算 App</title>
+	<link rel="stylesheet" href="./reset.css">
+	<link rel="stylesheet" href="./style.css">
+
+	<!-- M PLUS 1p -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<main class="top_main">
-		<h1>時間計算 App</h1>
-		<div class="calc_cont">
-			持ち時間 <input type="text" id="amount">h<br>
-			イベント事 <input type="text" id="event">h<br>
-			パーセンテージ <input type="text" id="percent"> (0~1の値を入力)<br>
-			担当新規 <input type="text" id="new_cont">h<br>
-			<button id="calc_btn">計算</button>
-			<p class="result_text">余剰時間 <span id="result"></span>h</p>
-		</div>
+	<main>
+		<section id="calc_app">
+			<h1>時間計算 App</h1>
+			<div class="calc_cont">
+				<ul class="input_list">
+					<li>
+						<span class="num">01</span>
+						<p class="ttl">名前</p>
+						<p class="input name_list">
+							<span class="name">
+								<input class="member" id="goto" type="radio" name="name" checked>
+								<label for="goto">後藤</label>
+								<span class="check"></span>
+							</span>
+							<span class="name">
+								<input class="member" id="ueno" type="radio" name="name">
+								<label for="ueno">上野</label>
+								<span class="check"></span>
+							</span>
+							<span class="name">
+								<input class="member" id="nakano" type="radio" name="name">
+								<label for="nakano">中野</label>
+								<span class="check"></span>
+							</span>
+						</p>
+					</li>
+					<li>
+						<span class="num">02</span>
+						<p class="ttl">持ち時間</p>
+						<p class="input"><input type="text" id="amount">h</p>
+					</li>
+					<li>
+						<span class="num">03</span>
+						<p class="ttl">イベント事</p>
+						<p class="input"><input type="text" id="event">h</p>
+					</li>
+					<!-- <li>
+						<span class="num">04</span>
+						<p class="ttl">パーセンテージ</p>
+						<p class="input"><input type="text" id="percent"> (0~1の値を入力)</p>
+					</li> -->
+					<li>
+						<span class="num">04</span>
+						<p class="ttl">担当新規</p>
+						<p class="input"><input type="text" id="new_cont">h</p>
+					</li>
+				</ul>
+				<div class="result_box">
+					<button id="calc_btn">計算</button>
+					<p class="result_text">余剰時間 <span id="result">0</span>h</p>
+				</div>
+			</div>
+		</section>
 	</main>
 
 	<script>
-		let amount = document.getElementById('amount');
-		let event = document.getElementById('event');
-		let percent= document.getElementById('percent');
-		let new_cont = document.getElementById('new_cont');
+
 		let calcBtn = document.getElementById('calc_btn');
 		let result = document.getElementById('result');
 		
 		const calc = () => {
-			amount = parseInt(amount.value,10);
-			event = parseInt(event.value,10);
-			percent = parseFloat(percent.value);
-			new_cont = parseInt(new_cont.value,10);
+			// 入力要素を取得
+			let member = document.querySelectorAll('.member');
+			let percent;
+			member.forEach(value => {
+				if(value.checked) {
+					if(value.id === 'goto') {
+						percent = 1;
+					} else if(value.id === 'ueno') {
+						percent = 1;
+					} else if(value.id === 'nakano') {
+						percent = 0.5;
+					};
+				};
+			});
+			let amount = document.getElementById('amount');
+			let event = document.getElementById('event');
+			let new_cont = document.getElementById('new_cont');
+
+			// 未入力の項目が合った場合処理を中断
+			if(!amount.value || !event.value || !new_cont.value) {
+				alert('すべての項目を入力してください');
+				return;
+			};
+
+			// 浮動小数点に変換
+			amount = parseFloat(amount.value);
+			event = parseFloat(event.value);
+			new_cont = parseFloat(new_cont.value);
+
+			// 結果表示
 			const resultTime = (amount - event) * percent - new_cont;
 			result.innerText = resultTime;
 		};

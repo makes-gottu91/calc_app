@@ -1,0 +1,163 @@
+@charset "utf-8";
+
+body {
+    font-family: 'M PLUS 1p', sans-serif;
+    color: #fff;
+    letter-spacing: 0.04em;
+}
+
+.input_list li {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2px 0px;
+    align-items: center;
+}
+
+.input_list li p.ttl {
+    width: 150px;
+}
+
+.input_list li p.ttl p.input input {
+    width: 100px;
+}
+
+.input_list li p.input input[type="text"] {
+    width: 75px;
+    border: 1px solid #fff;
+    margin-right: 8px;
+    background-color: rgba(255,255,255,1);
+    border-radius: 4px;
+    color: #333;
+    text-align: right;
+    padding-right: 8px;
+}
+
+.input_list li + li {
+    margin-top: 15px;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 400;
+    width: 100%;
+}
+
+.calc_cont {
+    margin-top: 28px;
+}
+
+.result_box {
+    margin-top: 25px;
+}
+
+.result_box button#calc_btn {
+    border: 1px solid #fff;
+    padding: 5px 20px;
+    background-color: #fff;
+    color: #333;
+    border-radius: 4px;
+}
+
+.result_text {
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 25px;
+}
+
+main {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100vh;
+    background-image: url(./img/bg.jpg);
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0 100px;
+}
+
+main::before {content: '';position: absolute;top: 0;left: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.8);}
+
+section#calc_app {
+    position: relative;
+    z-index: 100;
+}
+
+.input_list li p.input span.name {
+    margin-right: 15px;
+    display: inline-block;
+    position: relative;
+    padding-left: 18px;
+}
+
+.input_list li p.input span.name input[type="radio"] {
+    display: none;
+}
+
+.input_list li p.input span.name::before {content: '';position: absolute;top: 0;bottom: 0;margin: auto;left: 0;width: 10px;height: 10px;background-color: #fff;border-radius: 2px;}
+
+.input_list li p.input span.name span.check::after {
+    background-color: #333;
+    width: 8px;
+    height: 8px;
+    margin: auto;
+    right: auto;
+    left: 1px;
+    visibility: hidden;
+    opacity: 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.input_list li p.input span.name span.check {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.input_list li p.input span.name input[type="radio"]:checked ~ span.check::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+.input_list li span.num {
+    background-color: #fff;
+    color: #333;
+    font-size: 12px;
+    padding: 3px 2px;
+    border-radius: 2px;
+    margin-right: 10px;
+}
+
+@media (max-width: 750px) {
+
+main {
+    padding: 0 0;
+}
+
+section#calc_app {
+    width: 92%;
+    margin: auto;
+}
+
+.input_list li p.ttl {
+    width: 115px;
+}
+
+.input_list li + li {
+    margin-top: 16px;
+}
+
+.result_box {margin-top: 28px;}
+
+.input_list li p.input.name_list {
+    width: 100%;
+    margin-top: 10px;
+}
+
+}
